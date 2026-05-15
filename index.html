@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clive Daniel — Freelance Growth Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #16161f;
+    --border: rgba(255,255,255,0.07);
+    --accent: #6EE7B7;
+    --accent2: #818CF8;
+    --accent3: #F472B6;
+    --text: #e8e8f0;
+    --muted: #7a7a96;
+    --card-bg: rgba(255,255,255,0.03);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -100px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse, rgba(110,231,183,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(110,231,183,0.08);
+    border: 1px solid rgba(110,231,183,0.2);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat-item { }
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  /* SECTION */
+  section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+
+  .section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
+  }
+
+  /* CLIENT CARDS */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .client-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .client-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-card, var(--accent)), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .client-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .client-card:hover::before { opacity: 1; }
+
+  .client-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .client-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .client-period {
+    font-size: 12px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+    border: 1px solid var(--border);
+    margin-top: 4px;
+  }
+
+  .client-role {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .client-industry {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .client-about {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .client-work {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 24px;
+    padding-left: 14px;
+    border-left: 2px solid rgba(110,231,183,0.3);
+  }
+
+  /* METRICS */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .metric-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .metric-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  .metric-val.green { color: var(--accent); }
+  .metric-val.purple { color: var(--accent2); }
+  .metric-val.pink { color: var(--accent3); }
+
+  .metric-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(110,231,183,0.08);
+    border: 1px solid rgba(110,231,183,0.2);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-top: 12px;
+  }
+
+  /* WHAT I DO */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+
+  .service-icon {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .service-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* AGGREGATE STATS */
+  .agg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .agg-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .agg-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .agg-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  /* TECH STACK */
+  .stack-section { }
+
+  .stack-category {
+    margin-bottom: 24px;
+  }
+
+  .stack-cat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .stack-tag {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 12.5px;
+    padding: 5px 13px;
+    border-radius: 100px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .stack-tag:hover {
+    border-color: rgba(110,231,183,0.3);
+    color: var(--accent);
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 80px 0;
+    text-align: center;
+    border-bottom: none;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 36px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #0a0a0f;
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(110,231,183,0.25);
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .cta-secondary:hover { color: var(--text); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* INDUSTRY COLORS */
+  .tag-marketing { background: rgba(129,140,248,0.1); color: var(--accent2); border: 1px solid rgba(129,140,248,0.2); }
+  .tag-gifting { background: rgba(244,114,182,0.1); color: var(--accent3); border: 1px solid rgba(244,114,182,0.2); }
+  .tag-ai { background: rgba(110,231,183,0.1); color: var(--accent); border: 1px solid rgba(110,231,183,0.2); }
+  .tag-saas { background: rgba(251,191,36,0.1); color: #FBbf24; border: 1px solid rgba(251,191,36,0.2); }
+  .tag-consulting { background: rgba(251,113,133,0.1); color: #FB7185; border: 1px solid rgba(251,113,133,0.2); }
+  .tag-branding { background: rgba(52,211,153,0.1); color: #34D399; border: 1px solid rgba(52,211,153,0.2); }
+  .tag-influencer { background: rgba(167,139,250,0.1); color: #A78BFA; border: 1px solid rgba(167,139,250,0.2); }
+  .tag-voice { background: rgba(56,189,248,0.1); color: #38BDF8; border: 1px solid rgba(56,189,248,0.2); }
+
+  @media (max-width: 640px) {
+    .hero { padding: 60px 0 50px; }
+    .hero-stats { gap: 24px; }
+    .client-card { padding: 24px; }
+    .nav-links { display: none; }
+    h2 { font-size: 24px; margin-bottom: 32px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">Clive Daniel</div>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-tag">Freelance Growth Consultant · Available Now</div>
+    <h1>I Build Pipeline.<br><span>Not Just Campaigns.</span></h1>
+    <p class="hero-sub">B2B Growth & GTM Specialist. I help startups and founders generate qualified pipeline through LinkedIn, Email, and multi-channel outbound — end to end, from strategy to execution.</p>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">10+</div>
+        <div class="hero-stat-label">Clients Served</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">16,897+</div>
+        <div class="hero-stat-label">PoCs Reached</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">289</div>
+        <div class="hero-stat-label">MQLs / SQLs Generated</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">~58%</div>
+        <div class="hero-stat-label">Avg. Connection Rate</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGGREGATE IMPACT -->
+<section id="impact">
+  <div class="container">
+    <div class="section-label">By The Numbers</div>
+    <h2>Aggregate Impact Across Clients</h2>
+    <div class="agg-grid">
+      <div class="agg-card">
+        <div class="agg-num" style="color: var(--accent);">16,897</div>
+        <div class="agg-label">Total PoCs Reached</div>
+      </div>
+      <div class="agg-card">
+        <div class="agg-num" style="color: var(--accent2);">~58%</div>
+        <div class="agg-label">Avg. Connection Accept Rate</div>
+      </div>
+      <div class="agg-card">
+        <div class="agg-num" style="color: var(--accent3);">289</div>
+        <div class="agg-label">MQLs / SQLs Generated</div>
+      </div>
+      <div class="agg-card">
+        <div class="agg-num" style="color: #FBbf24;">10+</div>
+        <div class="agg-label">Clients Across Industries</div>
+      </div>
+      <div class="agg-card">
+        <div class="agg-num" style="color: #38BDF8;">6</div>
+        <div class="agg-label">D2C Clients Onboarded</div>
+      </div>
+      <div class="agg-card">
+        <div class="agg-num" style="color: #34D399;">8+</div>
+        <div class="agg-label">Brand Partnerships Closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT WORK -->
+<section id="work">
+  <div class="container">
+    <div class="section-label">Case Studies</div>
+    <h2>Client Work</h2>
+    <div class="clients-grid">
+
+      <!-- 1. The Marketing Tribe -->
+      <div class="client-card" style="--accent-card: var(--accent2);">
+        <div class="client-header">
+          <div>
+            <div class="client-name">The Marketing Tribe</div>
+            <div class="client-role">Growth Consultant</div>
+            <span class="client-industry tag-marketing">Marketing Consulting</span>
+          </div>
+          <div class="client-period">Jun 2025 – Oct 2025</div>
+        </div>
+        <div class="client-about">"We work with SMEs, startups, and mid-sized businesses to get their brand positioning right, build marketing strategies that bring in business, and focus on what moves the needle."</div>
+        <div class="client-work">Managed end-to-end LinkedIn Demand Gen for the CEO targeting C-level Marketers. Ran outreach sequences and authored thought-leadership articles to build the founder's personal brand and drive inbound interest.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">332</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">60.5%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">17.4%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">40%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">8</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 3Story -->
+      <div class="client-card" style="--accent-card: var(--accent3);">
+        <div class="client-header">
+          <div>
+            <div class="client-name">3Story</div>
+            <div class="client-role">Growth Consultant</div>
+            <span class="client-industry tag-gifting">Gifting & Merchandise</span>
+          </div>
+          <div class="client-period">Jun 2025 – Oct 2025</div>
+        </div>
+        <div class="client-about">"Every gift is a story waiting to be told — we create magical experiences through Customer Gifts, Employee Onboarding, Brand Merchandise, and Event Merchandise."</div>
+        <div class="client-work">Managed LinkedIn Demand Gen for the Founder targeting C-level HR leaders. Ran targeted outreach sequences and authored thought-leadership content to build brand credibility in the corporate gifting space.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">715</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">59.2%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">35%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">20</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. KnackLabs -->
+      <div class="client-card" style="--accent-card: var(--accent);">
+        <div class="client-header">
+          <div>
+            <div class="client-name">KnackLabs</div>
+            <div class="client-role">Fractional Growth Consultant</div>
+            <span class="client-industry tag-ai">AI-Native Engineering</span>
+          </div>
+          <div class="client-period">Jul 2025 – Dec 2025</div>
+        </div>
+        <div class="client-about">"An AI-native engineering company. One pod delivers what a traditional team of 8–10 would. India-based, US-incorporated. Enterprise-grade work at a fraction of Bay Area cost."</div>
+        <div class="client-work">Handled end-to-end LinkedIn and Email outreach for the COO, alongside thought-leadership articles. Targeted enterprise decision-makers for their AI Product Engineering and Enterprise AI Systems verticals.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">535</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">54%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">15.2%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">20.5%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">32</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. CodeKnack -->
+      <div class="client-card" style="--accent-card: #FBbf24;">
+        <div class="client-header">
+          <div>
+            <div class="client-name">CodeKnack</div>
+            <div class="client-role">Fractional Growth Consultant</div>
+            <span class="client-industry tag-saas">Dev Tools / AI SaaS</span>
+          </div>
+          <div class="client-period">Jul 2025 – Dec 2025</div>
+        </div>
+        <div class="client-about">"Revolutionizing code development with AI-powered intelligence built on advanced knowledge graphs — Smart Chat Agent, Intelligent Code Reviews, and a Knowledge Graph that learns your team."</div>
+        <div class="client-work">Managed Demand Gen for both the Founder & CEO and the CTO simultaneously. End-to-end LinkedIn and Email outreach plus thought-leadership content. Largest volume campaign across the portfolio.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">1,232</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">63.9%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">14%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">29.1%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">43</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Ukti.ai -->
+      <div class="client-card" style="--accent-card: var(--accent);">
+        <div class="client-header">
+          <div>
+            <div class="client-name">Ukti.ai</div>
+            <div class="client-role">Fractional Growth Consultant</div>
+            <span class="client-industry tag-voice">AI Voice Agents</span>
+          </div>
+          <div class="client-period">Sep 2025 – Dec 2025</div>
+        </div>
+        <div class="client-about">"AI-powered voice campaigns at scale — automate sales and support calls, sync CRM, and track results with real-time analytics. 24/7 AI Voice Agents across Real Estate, Finance, Hospitality, and Healthcare."</div>
+        <div class="client-work">Managed Demand Gen for the Founder & CEO. End-to-end LinkedIn and Email outreach with thought-leadership content. Achieved the highest positive reply rate across all engagements at 45.8%.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">394</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">66.8%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">27.4%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">45.8%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">26</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Twameva Global -->
+      <div class="client-card" style="--accent-card: #FB7185;">
+        <div class="client-header">
+          <div>
+            <div class="client-name">Twameva Global</div>
+            <div class="client-role">Fractional Growth Consultant</div>
+            <span class="client-industry tag-consulting">Finance & Business Consulting</span>
+          </div>
+          <div class="client-period">Oct 2025 – Feb 2026</div>
+        </div>
+        <div class="client-about">"A dynamic consulting firm bringing together Finance experts and Business consultants for a holistic approach blending financial acumen and strategic business insights."</div>
+        <div class="client-work">Managed Demand Gen for the Founder & CFO. End-to-end LinkedIn and Email outreach with thought-leadership content targeting finance decision-makers and C-suite executives.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">394</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">66.8%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">27.4%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">45.8%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">32</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Passionfruit -->
+      <div class="client-card" style="--accent-card: #34D399;">
+        <div class="client-header">
+          <div>
+            <div class="client-name">Passionfruit</div>
+            <div class="client-role">Growth Specialist</div>
+            <span class="client-industry tag-ai">AI SEO / GEO Growth</span>
+          </div>
+          <div class="client-period">Jan 2026 – Mar 2026</div>
+        </div>
+        <div class="client-about">"The world's first AI-powered, end-to-end SEO/GEO growth engine — proven to drive an average of 50% revenue growth, helping companies grow organically 20x faster including on ChatGPT, Perplexity, and Claude."</div>
+        <div class="client-work">End-to-end Demand Gen across 3 personas: Founder & CEO, Co-Founder, and Chief of Staff. Executed event-based outreach for US market events (ShopTalk, eTail). Ran category-specific campaigns targeting YC-backed startups, B2B SaaS, and AI startups.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">726</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">42.8%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">23.2%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">45.8%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">12</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+        <div class="highlight-badge">🇺🇸 US Event-Based Outreach — ShopTalk & eTail</div>
+      </div>
+
+      <!-- 8. StoryFacts -->
+      <div class="client-card" style="--accent-card: var(--accent2);">
+        <div class="client-header">
+          <div>
+            <div class="client-name">StoryFacts</div>
+            <div class="client-role">Growth Consultant</div>
+            <span class="client-industry tag-branding">Personal Branding & Strategy</span>
+          </div>
+          <div class="client-period">Feb 2026 – May 2026</div>
+        </div>
+        <div class="client-about">"We work with Founders, VCs, CXOs, and Coaches — turning what they've lived through into content that builds authority on LinkedIn and Instagram, while generating leads through a strong sales funnel."</div>
+        <div class="client-work">End-to-end Demand Gen across 3 personas: Founder & CEO, Co-Founder, and Chief of Staff. LinkedIn and Email outreach. Directly contributed to onboarding 6 D2C clients from diverse industries.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">1,543</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">70.4%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">39%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">45.8%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">43</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val" style="color: #FBbf24;">6</div>
+            <div class="metric-label">D2C Clients Onboarded</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. N² Media -->
+      <div class="client-card" style="--accent-card: #A78BFA;">
+        <div class="client-header">
+          <div>
+            <div class="client-name">N² Media</div>
+            <div class="client-role">Growth Consultant</div>
+            <span class="client-industry tag-influencer">Influencer & Personal Branding</span>
+          </div>
+          <div class="client-period">Feb 2026 – May 2026</div>
+        </div>
+        <div class="client-about">"An Influencer Marketing and Personal Branding Agency — working with Founders, VCs, CXOs, and Coaches to build real authority and generate revenue on LinkedIn & Instagram."</div>
+        <div class="client-work">End-to-end Demand Gen across 3 personas. Largest outreach volume in the portfolio at 11,056 PoCs. Directly contributed to closing brand partnerships with major D2C and consumer brands.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val green">11,056</div>
+            <div class="metric-label">PoCs Reached</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">67.1%</div>
+            <div class="metric-label">Connection Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">43.7%</div>
+            <div class="metric-label">Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val pink">45.8%</div>
+            <div class="metric-label">Positive Reply Rate</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">39</div>
+            <div class="metric-label">MQLs / SQLs</div>
+          </div>
+        </div>
+        <div class="highlight-badge">🤝 Partnerships: Myntra · MuscleBlaze · Zomato · Zepto · Dyson · Dot & Key · Magicpin · District · Matiks</div>
+      </div>
+
+      <!-- 10. Bolcho AI -->
+      <div class="client-card" style="--accent-card: #38BDF8;">
+        <div class="client-header">
+          <div>
+            <div class="client-name">Bolcho AI</div>
+            <div class="client-role">Fractional Growth Consultant</div>
+            <span class="client-industry tag-voice">Voice AI Platform</span>
+          </div>
+          <div class="client-period">Apr 2026 – Present</div>
+        </div>
+        <div class="client-about">"A Voice AI platform for developers — build and deploy Voice AI agents at scale."</div>
+        <div class="client-work">Framed full GTM strategy across 4 channels. Executing end-to-end signal-based, founder-led outreach for Founder and Director of Sales. Currently leading GTM launch for Skiddly, their D2C-focused product.</div>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val" style="color: #38BDF8;">Active</div>
+            <div class="metric-label">Engagement Status</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val green">4</div>
+            <div class="metric-label">GTM Channels</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val purple">2</div>
+            <div class="metric-label">Exec Personas Managed</div>
+          </div>
+        </div>
+        <div class="highlight-badge">🚀 Currently: GTM Launch — Skiddly (D2C Product)</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">What I Do</div>
+    <h2>Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <div class="service-title">LinkedIn Demand Gen</div>
+        <div class="service-desc">End-to-end outreach strategy, ICP targeting, connection sequences, and reply management. Founder-led or exec-persona driven. Signal-based and event-triggered variants available.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📧</div>
+        <div class="service-title">Cold Email Outreach</div>
+        <div class="service-desc">Full-stack email infrastructure: domain warmup, deliverability, list building, sequence writing, A/B testing, and performance optimization. Tools: Instantly, Smartlead, Lemlist.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗺️</div>
+        <div class="service-title">GTM Strategy</div>
+        <div class="service-desc">ICP definition, channel selection, messaging frameworks, pipeline architecture, and go-to-market playbooks built from the ground up for early-stage startups.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✍️</div>
+        <div class="service-title">Thought Leadership Content</div>
+        <div class="service-desc">LinkedIn articles and posts for founders and C-suite executives. Converts authority into inbound demand. Ghostwritten in your voice, anchored in real insight.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <div class="service-title">ABM Campaigns</div>
+        <div class="service-desc">Account-Based Marketing programs across tiered target account lists. Hyper-personalized outreach combining LinkedIn, Email, and signal-based triggers.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <div class="service-title">RevOps & CRM Setup</div>
+        <div class="service-desc">HubSpot architecture, pipeline design, lead scoring, automation workflows, and reporting dashboards. Built for scale from day one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack">
+  <div class="container">
+    <div class="section-label">Tools & Tech</div>
+    <h2>Tech Stack</h2>
+    <div class="stack-section">
+      <div class="stack-category">
+        <div class="stack-cat-label">CRM</div>
+        <div class="stack-tags">
+          <span class="stack-tag">HubSpot</span>
+          <span class="stack-tag">Zoho</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-cat-label">Email Marketing</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Instantly</span>
+          <span class="stack-tag">Smartlead</span>
+          <span class="stack-tag">Lemlist</span>
+          <span class="stack-tag">Mailmodo</span>
+          <span class="stack-tag">GMass</span>
+          <span class="stack-tag">ZeroBounce</span>
+          <span class="stack-tag">NeverBounce</span>
+          <span class="stack-tag">Constant Contact</span>
+          <span class="stack-tag">Sendinblue</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-cat-label">LinkedIn Marketing</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Sales Navigator</span>
+          <span class="stack-tag">Dripify</span>
+          <span class="stack-tag">LinkedFusion</span>
+          <span class="stack-tag">HeyReach</span>
+          <span class="stack-tag">Waalaxy</span>
+          <span class="stack-tag">LinkedHelper</span>
+          <span class="stack-tag">Albert</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-cat-label">Data Scraping & Enrichment</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Clay</span>
+          <span class="stack-tag">Apollo.io</span>
+          <span class="stack-tag">ZoomInfo</span>
+          <span class="stack-tag">Lusha</span>
+          <span class="stack-tag">PhantomBuster</span>
+          <span class="stack-tag">Hunter.io</span>
+          <span class="stack-tag">Seamless.ai</span>
+          <span class="stack-tag">StoreLeads</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-cat-label">Marketing Automation</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Zapier</span>
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">Automate.io</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-cat-label">AI & Content</div>
+        <div class="stack-tags">
+          <span class="stack-tag">ChatGPT</span>
+          <span class="stack-tag">Claude</span>
+          <span class="stack-tag">Gemini</span>
+          <span class="stack-tag">Jasper</span>
+          <span class="stack-tag">Writesonic</span>
+          <span class="stack-tag">Canva</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-cat-label">Project Management</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Notion</span>
+          <span class="stack-tag">ClickUp</span>
+          <span class="stack-tag">Trello</span>
+          <span class="stack-tag">Asana</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-cat-label">Productivity & Communication</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Microsoft 365</span>
+          <span class="stack-tag">Google Workspace</span>
+          <span class="stack-tag">Slack</span>
+          <span class="stack-tag">Microsoft Teams</span>
+          <span class="stack-tag">RingCentral</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>Let's Build Your<br><span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Pipeline.</span></h2>
+    <p>Whether you need a full GTM build, outbound system, or someone to own your pipeline end-to-end — let's talk.</p>
+    <a href="mailto:clivedaniel18@gmail.com" class="cta-btn">✉️ DM Me — clivedaniel18@gmail.com</a>
+    <a href="https://www.linkedin.com/in/clive-daniel18" class="cta-secondary" target="_blank">LinkedIn →</a>
+  </div>
+</section>
+
+<script>
+  // Staggered card entrance
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.client-card, .service-card, .agg-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
